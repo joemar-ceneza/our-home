@@ -15,7 +15,6 @@ export default function ProductsDetails() {
   }
   const product = data[0];
   const categoryTitle = data[0].attributes.categories.data[0].attributes.title;
-  const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   return (
     <section className="max-w-screen-2xl w-[90%] mx-auto py-10">
@@ -38,7 +37,7 @@ export default function ProductsDetails() {
       <div className="flex justify-between max-lg:flex-col">
         <img
           className="w-1/2 max-lg:w-full"
-          src={`${baseUrl}${data[0].attributes.image.data.attributes.url}`}
+          src={`${data[0].attributes.image.data.attributes.url}`}
           alt=""
         />
         <div className="w-1/2 p-10 max-lg:w-full max-lg:px-0">

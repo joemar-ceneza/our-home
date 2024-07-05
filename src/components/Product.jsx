@@ -23,7 +23,6 @@ export default function Product({
     e.preventDefault();
     handleView(e, product);
   };
-  const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   return (
     <Link to={`/product/${product.attributes.slug}`}>
@@ -31,7 +30,7 @@ export default function Product({
         <div className="w-full h-[200px] flex flex-col items-center justify-center">
           <img
             className="w-4/5 h-[160px]"
-            src={`${baseUrl}${product.attributes.image.data.attributes.url}`}
+            src={`${product.attributes.image.data.attributes.url}`}
             alt=""
             draggable="false"
           />

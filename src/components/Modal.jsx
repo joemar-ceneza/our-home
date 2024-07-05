@@ -13,7 +13,6 @@ export default function Modal({ product, closeModal }) {
       document.body.style.overflow = "auto";
     };
   }, []);
-  const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
@@ -22,7 +21,7 @@ export default function Modal({ product, closeModal }) {
         onClick={closeModal}></div>
       <div className="relative max-w-4xl w-3/4 flex flex-col justify-between bg-white p-6 rounded-lg z-50 lg:flex-row">
         <img
-          src={`${baseUrl}${product?.attributes.image.data.attributes.url}`}
+          src={`${product?.attributes.image.data.attributes.url}`}
           alt={product?.attributes.title}
           className="w-full h-auto lg:w-80"
         />

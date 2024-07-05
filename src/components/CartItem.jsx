@@ -6,7 +6,6 @@ import { CartContext } from "../context/CartContext";
 export default function CartItem({ item }) {
   const { removeFromCart, handleInput, addQty, reduceQty } =
     useContext(CartContext);
-  const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   return (
     <>
@@ -15,10 +14,7 @@ export default function CartItem({ item }) {
         <Link
           to={`http://localhost:3000/product/${item.attributes.slug}`}
           className="w-[200px] h-[200px]">
-          <img
-            src={`${baseUrl}${item.attributes.image.data.attributes.url}`}
-            alt=""
-          />
+          <img src={`${item.attributes.image.data.attributes.url}`} alt="" />
         </Link>
         <h2 className="text-xs text-left font-semibold md:text-base md:px-3">
           {item.attributes.title.substring(0, 30)}...
