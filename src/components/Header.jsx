@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Logo from "../images/logo.png";
 import SearchForm from "./SearchForm";
-import { CiShoppingCart, CiUser, CiSearch } from "react-icons/ci";
+import { CiShoppingCart, CiSearch } from "react-icons/ci";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 

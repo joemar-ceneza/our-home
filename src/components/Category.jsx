@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useFetch from "../hook/useFetch";
-import ChooseCategory from "../images/choose-category.jpg";
 import MobileChooseCategory from "../images/mobile-choose-category.jpg";
+import DesktopChooseCategory from "../images/desktop-choose-category.jpg";
 import CategoryItem from "./CategoryItem";
 
 export default function Category() {
@@ -21,7 +21,7 @@ export default function Category() {
     <section className="w-[95%] mx-auto pb-20 select-none">
       <img
         className="w-full"
-        src={isMobile ? MobileChooseCategory : ChooseCategory}
+        src={isMobile ? MobileChooseCategory : DesktopChooseCategory}
         alt="Choose Category"
       />
       <div className="max-w-screen-2xl mx-auto grid place-items-center grid-cols-2 gap-2 md:gap-8 lg:grid-cols-3">
