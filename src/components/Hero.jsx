@@ -13,7 +13,6 @@ export default function Hero() {
   const { data: mobileData } = useFetch(
     `/heroes?populate=*&filters[isDesktop]=false`
   );
-  const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,15 +29,18 @@ export default function Hero() {
       modules={[Pagination, Navigation, Autoplay]}
       loop={true}
       autoplay={{ delay: 5000, disableOnInteraction: false }}>
-      {data?.map((data, index) => (
-        <SwiperSlide key={index}>
-          <img
-            className="w-screen select-none"
-            src={`${baseUrl}${data.attributes.image.data.attributes.url}`}
-            alt=""
-          />
-        </SwiperSlide>
-      ))}
+      {data?.map((item, index) => {
+        console.log(item.attributes.image.data[0].attributes.url);
+        return (
+          <SwiperSlide key={index}>
+            <img
+              className="w-screen select-none"
+              src={`${item.attributes.image.data[0].attributes.url}`}
+              alt=""
+            />
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 }
