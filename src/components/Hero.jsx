@@ -30,7 +30,6 @@ export default function Hero() {
       loop={true}
       autoplay={{ delay: 5000, disableOnInteraction: false }}>
       {data?.map((item, index) => {
-        console.log(item.attributes.image.data[0].attributes.url);
         return (
           <SwiperSlide key={index}>
             <img
