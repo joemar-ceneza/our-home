@@ -53,17 +53,25 @@ export default function FeaturedProducts() {
       <h2 className="w-full text-2xl text-center text-gray-800 font-semibold tracking-wider capitalize py-16 sm:text-3xl">
         Featured Products
       </h2>
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-8 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-8 lg:grid-cols-4 xl:grid-cols-5 relative">
         {isLoading && page === 1 ? (
-          <p>Loading...</p>
+          <div className="absolute w-full flex justify-center items-center transform">
+            <div className="border-t-transparent border-solid animate-spin rounded-full border-blue-400 border-8 h-14 w-14"></div>
+          </div>
         ) : (
           products?.map((product) => (
             <FeaturedProductItem key={product.id} product={product} />
           ))
         )}
       </div>
-      {isFetchingMore && <p>Loading more...</p>}
-      {error && <p className="text-red-500">Error loading products.</p>}
+      {isFetchingMore && (
+        <p className="text-center font-bold py-10">Loading more...</p>
+      )}
+      {error && (
+        <p className="flex justify-center items-center text-red-500  font-bold h-14">
+          Error loading products...
+        </p>
+      )}
       <div className="mt-10 flex justify-center gap-4">
         {data && data.length === defaultPageSize && (
           <button
