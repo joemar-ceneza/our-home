@@ -3,11 +3,12 @@ import useFetch from "../hook/useFetch";
 import FeaturedProductItem from "./FeaturedProductItem";
 
 export default function FeaturedProducts() {
+  const defaultPageSize = 10;
+
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState([]);
   const [defaultProducts, setDefaultProducts] = useState([]);
   const [isFetchingMore, setIsFetchingMore] = useState(false);
-  const defaultPageSize = 10;
 
   const { data, isLoading, error } = useFetch(
     `/products?populate=*&filters[isFeatured]=true&pagination[page]=${page}&pagination[pageSize]=${defaultPageSize}`
