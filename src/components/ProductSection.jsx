@@ -15,11 +15,31 @@ export default function ProductSection({
   newLabel,
   relatedLabel,
 }) {
-  const { data } = useFetch(fetchUrl);
+  const { data, isLoading, error } = useFetch(fetchUrl);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  return data && data.length > 0 ? (
+  if (isLoading) {
+    return (
+      <div className="w-full h-[150px] mx-auto flex justify-center items-center transform">
+        <div className="border-t-transparent border-solid animate-spin rounded-full border-blue-400 border-8 h-14 w-14"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-[150px] flex justify-center items-center text-red-500 text-center font-bold ">
+        Error Loading Products...
+      </div>
+    );
+  }
+
+  if (!data || data.length === 0) {
+    return null;
+  }
+
+  return (
     <section className="max-w-screen-xl w-4/5 mx-auto py-16">
       <div className="inline-flex items-center justify-center w-full capitalize text-sm pb-6">
         <hr className="w-full h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
@@ -44,5 +64,5 @@ export default function ProductSection({
         />
       )}
     </section>
-  ) : null;
+  );
 }
