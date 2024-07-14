@@ -1,6 +1,8 @@
 import useFetch from "../hook/useFetch";
 import { useState } from "react";
 import ProductSlider from "./ProductSlider";
+import LoaderSpinner from "./SpinnerLoader";
+import Error from "./Error";
 import Modal from "./Modal";
 import {
   handleButtonClick,
@@ -20,19 +22,11 @@ export default function ProductSection({
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   if (isLoading) {
-    return (
-      <div className="w-full h-[150px] mx-auto flex justify-center items-center transform">
-        <div className="border-t-transparent border-solid animate-spin rounded-full border-blue-400 border-8 h-14 w-14"></div>
-      </div>
-    );
+    return <LoaderSpinner />;
   }
 
   if (error) {
-    return (
-      <div className="w-full h-[150px] flex justify-center items-center text-red-500 text-center font-bold ">
-        Error Loading Products...
-      </div>
-    );
+    return <Error />;
   }
 
   if (!data || data.length === 0) {
