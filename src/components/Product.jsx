@@ -25,14 +25,13 @@ export default function Product({
   };
 
   return (
-    <Link to={`/product/${product.attributes.slug}`}>
+    <Link to={`/product/${product.attributes.slug}`} draggable="false">
       <div className="bg-slate-200 w-[230px] h-[320px] mx-auto rounded-[8px] relative group">
         <div className="w-full h-[200px] flex flex-col items-center justify-center">
           <img
             className="w-4/5 h-[160px]"
             src={`${product.attributes.image.data.attributes.url}`}
             alt=""
-            draggable="false"
           />
           <div className="absolute bottom-[140px] w-4/5 flex justify-around text-sm opacity-0 text-white group-hover:opacity-100 group-hover:bg-gray-700">
             <button
