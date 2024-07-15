@@ -21,17 +21,35 @@ export default function ProductSection({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  if (isLoading) {
-    return <LoaderSpinner />;
-  }
+  const openModal = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
 
-  if (error) {
-    return <Error />;
-  }
+  const renderContent = () => {
+    if (isLoading) {
+      return <LoaderSpinner />;
+    }
 
-  if (!data || data.length === 0) {
-    return null;
-  }
+    if (error) {
+      return <Error />;
+    }
+
+    if (!data || data.length === 0) {
+      return <div>No products found</div>;
+    }
+
+    return (
+      <ProductSlider
+        data={data}
+        handleButtonClick={handleButtonClick}
+        handleView={(e, product) => openModal(product)}
+        bestLabel={bestLabel}
+        newLabel={newLabel}
+        relatedLabel={relatedLabel}
+      />
+    );
+  };
 
   return (
     <section className="max-w-screen-xl w-4/5 mx-auto py-16">
@@ -41,16 +59,7 @@ export default function ProductSection({
           {title}
         </span>
       </div>
-      <ProductSlider
-        data={data}
-        handleButtonClick={handleButtonClick}
-        handleView={(e, product) =>
-          handleView(e, product, setIsModalOpen, setSelectedProduct)
-        }
-        bestLabel={bestLabel}
-        newLabel={newLabel}
-        relatedLabel={relatedLabel}
-      />
+      {renderContent()}
       {isModalOpen && (
         <Modal
           closeModal={() => closeModal(setIsModalOpen)}
