@@ -1,18 +1,45 @@
-import { useParams } from "react-router-dom";
 import useFetch from "../hook/useFetch";
-import RelatedProducts from "../components/RelatedProducts";
+import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { IoHomeOutline, IoChevronForward } from "react-icons/io5";
+import RelatedProducts from "../components/RelatedProducts";
+import SpinnerLoader from "../components/SpinnerLoader";
+import Error from "../components/Error";
+import NotFound from "../components/NotFound";
 
 export default function ProductsDetails() {
   const { addToCart } = useContext(CartContext);
   const { id } = useParams();
-  const { data } = useFetch(`/products?populate=*&filters[slug][$eq]=${id}`);
-  if (!data) {
-    return <div className="container mx-auto">loading...</div>;
+  const { data, isLoading, error } = useFetch(
+    `/products?populate=*&filters[slug][$eq]=${id}`
+  );
+
+  if (isLoading) {
+    return (
+      <div className="py-80">
+        <SpinnerLoader />
+      </div>
+    );
   }
+
+  if (error) {
+    return (
+      <div className="py-80">
+        <Error />
+      </div>
+    );
+  }
+
+  if (!data || data.length === 0) {
+    return (
+      <div className="py-80">
+        <NotFound />
+      </div>
+    );
+  }
+
   const product = data[0];
   const categoryTitle = data[0].attributes.categories.data[0].attributes.title;
 
@@ -37,7 +64,7 @@ export default function ProductsDetails() {
       <div className="flex justify-between max-lg:flex-col">
         <img
           className="w-1/2 max-lg:w-full"
-          src={`${data[0].attributes.image.data.attributes.url}`}
+          src={data[0].attributes.image?.data.attributes.url}
           alt=""
         />
         <div className="w-1/2 p-10 max-lg:w-full max-lg:px-0">
