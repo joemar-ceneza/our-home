@@ -1,14 +1,11 @@
-import useFetch from "../hook/useFetch";
 import { useState } from "react";
+import useFetch from "../hook/useFetch";
 import ProductSlider from "./ProductSlider";
 import LoaderSpinner from "./SpinnerLoader";
 import Error from "./Error";
+import NotFound from "./NotFound";
 import Modal from "./Modal";
-import {
-  handleButtonClick,
-  handleView,
-  closeModal,
-} from "../utils/commonUtils";
+import { handleButtonClick, closeModal } from "../utils/commonUtils";
 
 export default function ProductSection({
   title,
@@ -36,7 +33,7 @@ export default function ProductSection({
     }
 
     if (!data || data.length === 0) {
-      return <div>No products found</div>;
+      return <NotFound />;
     }
 
     return (
