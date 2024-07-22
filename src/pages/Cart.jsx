@@ -55,23 +55,23 @@ export default function Cart() {
             <CartItem item={item} key={item.id} />
           ))}
           <hr />
-          <div className="flex flex-col items-center py-10">
-            <div className="w-full flex justify-around font-semibold text-2xl capitalize py-3 sm:justify-center">
-              <p className="w-1/2">total</p>
-              <p className="w-1/2 text-center">
+          <div className="max-w-80 mx-auto flex flex-col py-10 md:mx-0 md:ml-auto">
+            <div className="w-full flex justify-between font-semibold text-2xl capitalize py-3">
+              <p className="w-1/4 text-left">total</p>
+              <p className="w-2/5 text-right">
                 ₱ {parseFloat(total).toLocaleString()}
               </p>
             </div>
-            <div className="">
+            <div className="max-w-96 flex flex-col py-5">
               <button
-                className="bg-gray-800 my-3 mx-16 p-3 px-16 text-white capitalize font-normal"
-                onClick={clearCart}>
-                clear cart
-              </button>
-              <button
-                className="bg-gray-800 my-3 mx-16 p-3 px-16 text-white capitalize font-normal"
+                className="bg-gray-800 my-3 p-3 px-16 text-white capitalize font-normal"
                 onClick={handlePayment}>
                 check out
+              </button>
+              <button
+                className="bg-gray-800 my-3 p-3 px-16 text-white capitalize font-normal"
+                onClick={clearCart}>
+                clear cart
               </button>
             </div>
           </div>
