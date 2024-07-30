@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import useFetch from "../hook/useFetch";
 import FeaturedProductItem from "./FeaturedProductItem";
+import SpinnerLoader from "./SpinnerLoader";
+import Error from "./Error";
+import NotFound from "./NotFound";
 
 export default function FeaturedProducts() {
   const defaultPageSize = 10;
-
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState([]);
   const [defaultProducts, setDefaultProducts] = useState([]);
@@ -16,22 +18,22 @@ export default function FeaturedProducts() {
 
   useEffect(() => {
     if (data) {
-      const newProducts = data.filter((newProduct) => {
-        return !products.some((product) => product.id === newProduct.id);
-      });
+      const newProducts = data.filter(
+        (newProduct) =>
+          !products.some((product) => product.id === newProduct.id)
+      );
 
       setProducts((prevProducts) => {
         const updatedProducts = [...prevProducts, ...newProducts];
-
-        // Store the initial set of products
-        if (page === 1) {
-          setDefaultProducts(updatedProducts);
-        }
-
+        if (page === 1) setDefaultProducts(updatedProducts);
         return updatedProducts;
       });
     }
-  }, [data]);
+  }, [data, page]);
+
+  useEffect(() => {
+    if (!isLoading) setIsFetchingMore(false);
+  }, [isLoading]);
 
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);
@@ -43,36 +45,39 @@ export default function FeaturedProducts() {
     setPage(1);
   };
 
-  useEffect(() => {
-    if (!isLoading) {
-      setIsFetchingMore(false);
+  const renderContent = () => {
+    if (isLoading && page === 1) {
+      return <SpinnerLoader />;
     }
-  }, [isLoading]);
+
+    if (error) {
+      return <Error message="Error Loading Products..." />;
+    }
+
+    if (!products || products.length === 0) {
+      return <NotFound message="No products found." />;
+    }
+
+    return (
+      <>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-8 lg:grid-cols-4 xl:grid-cols-5 relative">
+          {products.map((product) => (
+            <FeaturedProductItem key={product.id} product={product} />
+          ))}
+        </div>
+        {isFetchingMore && (
+          <p className="text-center font-bold py-10">Loading more...</p>
+        )}
+      </>
+    );
+  };
 
   return (
     <section className="max-w-screen-2xl w-[95%] mx-auto pb-36">
       <h2 className="w-full text-2xl text-center text-gray-800 font-semibold tracking-wider capitalize py-16 sm:text-3xl">
         Featured Products
       </h2>
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-8 lg:grid-cols-4 xl:grid-cols-5 relative">
-        {isLoading && page === 1 ? (
-          <div className="absolute w-full flex justify-center items-center transform">
-            <div className="border-t-transparent border-solid animate-spin rounded-full border-blue-400 border-8 h-14 w-14"></div>
-          </div>
-        ) : (
-          products?.map((product) => (
-            <FeaturedProductItem key={product.id} product={product} />
-          ))
-        )}
-      </div>
-      {isFetchingMore && (
-        <p className="text-center font-bold py-10">Loading more...</p>
-      )}
-      {error && (
-        <p className="flex justify-center items-center text-red-500  font-bold h-14">
-          Error loading products...
-        </p>
-      )}
+      {renderContent()}
       <div className="mt-10 flex justify-center gap-4">
         {data && data.length === defaultPageSize && (
           <button
