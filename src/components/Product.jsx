@@ -33,7 +33,7 @@ export default function Product({
             src={`${product.attributes.image.data.attributes.url}`}
             alt=""
           />
-          <div className="absolute bottom-[140px] w-4/5 flex justify-around text-sm opacity-0 text-white group-hover:opacity-100 group-hover:bg-gray-700">
+          <div className="absolute bottom-[140px] w-4/5 flex justify-around text-sm opacity-0 text-white group-hover:opacity-100 group-hover:bg-gray-700 transition ease-in-out delay-75">
             <button
               className="w-full flex justify-around items-center uppercase p-1 hover:bg-gray-500"
               onClick={onAddToCart}>
