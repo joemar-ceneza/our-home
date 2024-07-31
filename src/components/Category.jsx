@@ -18,13 +18,13 @@ export default function Category() {
   }, []);
 
   return (
-    <section className="w-[95%] mx-auto pb-20 select-none">
+    <section className="w-[95%] mx-auto py-5 select-none">
       <img
         className="w-full"
         src={isMobile ? MobileChooseCategory : DesktopChooseCategory}
         alt="Choose Category"
       />
-      <div className="max-w-screen-2xl mx-auto grid place-items-center grid-cols-2 gap-2 md:gap-8 lg:grid-cols-3">
+      <div className="max-w-screen-2xl mx-auto grid place-items-center grid-cols-2 gap-2 py-16 md:gap-8 lg:grid-cols-3">
         {data?.map((category) => {
           return <CategoryItem key={category.id} category={category} />;
         })}
