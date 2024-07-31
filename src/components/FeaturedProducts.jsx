@@ -73,7 +73,7 @@ export default function FeaturedProducts() {
   };
 
   return (
-    <section className="max-w-screen-2xl w-[95%] mx-auto pb-36">
+    <section className="max-w-screen-2xl w-[95%] mx-auto py-10">
       <h2 className="w-full text-2xl text-center text-gray-800 font-semibold tracking-wider capitalize py-16 sm:text-3xl">
         Featured Products
       </h2>
