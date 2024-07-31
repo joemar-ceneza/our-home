@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useFetch from "../hook/useFetch";
 import ProductSlider from "./ProductSlider";
-import LoaderSpinner from "./SpinnerLoader";
+import SpinnerLoader from "./SpinnerLoader";
 import Error from "./Error";
 import NotFound from "./NotFound";
 import Modal from "./Modal";
@@ -25,7 +25,7 @@ export default function ProductSection({
 
   const renderContent = () => {
     if (isLoading) {
-      return <LoaderSpinner />;
+      return <SpinnerLoader />;
     }
 
     if (error) {
@@ -50,7 +50,7 @@ export default function ProductSection({
 
   return (
     <section className="max-w-screen-xl w-4/5 mx-auto py-16">
-      <div className="inline-flex items-center justify-center w-full capitalize text-sm pb-6">
+      <div className="inline-flex items-center justify-center w-full capitalize text-sm py-3">
         <hr className="w-full h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
         <span className="absolute px-5 font-medium text-gray-500 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">
           {title}
