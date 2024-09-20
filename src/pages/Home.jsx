@@ -7,10 +7,10 @@ import NewProducts from "../components/NewProducts";
 export default function Home() {
   return (
     <section>
-      <Hero />
+      {/* <Hero /> */}
       <BestProducts />
       <Category />
-      <FeaturedProducts />
+      {/* <FeaturedProducts /> */}
       <NewProducts />
     </section>
   );
