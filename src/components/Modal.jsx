@@ -21,29 +21,37 @@ export default function Modal({ product, closeModal }) {
         onClick={closeModal}></div>
       <div className="relative max-w-4xl w-3/4 flex flex-col justify-between bg-white p-6 rounded-lg z-50 lg:flex-row">
         <img
-          src={`${product?.attributes.image.data.attributes.url}`}
-          alt={product?.attributes.title}
+          src={`${product.image}`}
+          alt={product.name}
           className="w-full h-auto lg:w-80"
         />
         <div className="w-full capitalize tracking-wide lg:py-10 lg:mx-8">
-          <h2 className="text-2xl font-bold">{product?.attributes.title}</h2>
+          <h2 className="text-2xl font-bold">{product.name}</h2>
           <div className="flex">
-            {product.attributes.isOnSale &&
-            product.attributes.salePrice !== 0 ? (
+            {product.isOnSale && product.salePrice !== 0 ? (
               <>
                 <div className="absolute bg-red-500 text-white text-xs font-bold uppercase top-8 left-8 px-2 py-1 z-10">
                   sale
                 </div>
                 <p className="py-3 text-lg font-bold text-red-500">
-                  ₱ {product?.attributes.salePrice.toLocaleString()}
+                  ₱{" "}
+                  {product.salePrice
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </p>
                 <p className="py-3 px-5 text-sm font-bold text-gray-300 line-through">
-                  ₱ {product?.attributes.regPrice.toLocaleString()}
+                  ₱{" "}
+                  {product.regularPrice
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </p>
               </>
             ) : (
               <p className="py-3 text-lg font-bold text-red-500">
-                ₱ {product?.attributes.regPrice.toLocaleString()}
+                ₱{" "}
+                {product.regularPrice
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </p>
             )}
           </div>
@@ -51,18 +59,18 @@ export default function Modal({ product, closeModal }) {
           <div className="py-3 hidden">
             <button
               className="rounded-l-lg bg-gray-200 px-4 py-1"
-              onClick={() => reduceQty(product.id)}>
+              onClick={() => reduceQty(product._id)}>
               -
             </button>
             <input
               type="number"
               value={`${product.amount}`}
-              onChange={(e) => handleInput(e, product.id)}
+              onChange={(e) => handleInput(e, product._id)}
               className="w-24 bg-gray-200 py-1 text-center focus:outline-none"
             />
             <button
               className="rounded-r-lg bg-gray-200 px-4 py-1"
-              onClick={() => addQty(product.id)}>
+              onClick={() => addQty(product._id)}>
               +
             </button>
           </div>
@@ -71,7 +79,7 @@ export default function Modal({ product, closeModal }) {
             onClick={() => addToCart(product)}>
             Add to cart
           </button>
-          <Link to={`/product/${product.attributes.slug}`} onClick={closeModal}>
+          <Link to={`/product/${product.slug}`} onClick={closeModal}>
             <p className="flex items-center text-sm underline mt-7">
               view full details
               <span className="text-2xl pl-1">
