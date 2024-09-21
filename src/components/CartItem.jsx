@@ -12,28 +12,23 @@ export default function CartItem({ item }) {
       <hr />
       <div className="flex flex-col justify-around items-center py-5 tracking-wide overflow-hidden relative md:flex-row">
         <Link
-          to={`http://localhost:3000/product/${item.attributes.slug}`}
+          to={`http://localhost:3000/product/${item.slug}`}
           className="w-[200px] h-[200px]">
-          <img src={`${item.attributes.image.data.attributes.url}`} alt="" />
+          <img src={`${item.image}`} alt="" />
         </Link>
         <h2 className="text-xs text-left font-semibold md:text-base md:px-3">
-          {item.attributes.title.substring(0, 30)}...
+          {item.name}...
         </h2>
         <div className="flex justify-between py-5">
-          {item.attributes.isOnSale === true &&
-          item.attributes.salePrice !== 0 ? (
-            <p className="text-left">
-              ₱ {item.attributes.salePrice.toLocaleString()}
-            </p>
+          {item.isOnSale === true && item.salePrice !== 0 ? (
+            <p className="text-left">₱ {item.salePrice}</p>
           ) : (
-            <p className="text-left">
-              ₱ {item.attributes.regPrice.toLocaleString()}
-            </p>
+            <p className="text-left">₱ {item.regularPrice}</p>
           )}
           <div className="w-[40%] flex justify-center items-center">
             <button
               className="bg-gray-200 px-3 hover:bg-gray-300"
-              onClick={() => reduceQty(item.id)}>
+              onClick={() => reduceQty(item._id)}>
               -
             </button>
             <input
@@ -44,23 +39,18 @@ export default function CartItem({ item }) {
             />
             <button
               className="bg-gray-200 px-3 hover:bg-gray-300"
-              onClick={() => addQty(item.id)}>
+              onClick={() => addQty(item._id)}>
               +
             </button>
           </div>
-          {item.attributes.isOnSale === true &&
-          item.attributes.salePrice !== 0 ? (
-            <p className="text-center">
-              ₱ {(item.attributes.salePrice * item.amount).toLocaleString()}
-            </p>
+          {item.isOnSale === true && item.salePrice !== 0 ? (
+            <p className="text-center">₱ {item.salePrice * item.amount}</p>
           ) : (
-            <p className="text-center">
-              ₱ {(item.attributes.regPrice * item.amount).toLocaleString()}
-            </p>
+            <p className="text-center">₱ {item.regularPrice * item.amount}</p>
           )}
         </div>
         <button
-          onClick={() => removeFromCart(item.id)}
+          onClick={() => removeFromCart(item._id)}
           className="absolute top-1 right-0 text-sm hover:bg-gray-300 rounded-md">
           <IoMdClose />
         </button>
