@@ -20,7 +20,7 @@ export default function Products() {
 
   useEffect(() => {
     if (data) {
-      setTitle(data[0].attributes.categories.data[0].attributes.title);
+      setTitle(data[0].name);
     }
   }, [data]);
 
@@ -32,7 +32,7 @@ export default function Products() {
           return (
             <Product
               product={product}
-              key={product.id}
+              key={product._id}
               handleButtonClick={handleButtonClick}
               handleView={(e) =>
                 handleView(e, product, setIsModalOpen, setSelectedProduct)
