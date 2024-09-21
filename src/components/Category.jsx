@@ -26,7 +26,7 @@ export default function Category() {
       />
       <div className="max-w-screen-2xl mx-auto grid place-items-center grid-cols-2 gap-2 py-16 md:gap-8 lg:grid-cols-3">
         {data?.map((category) => {
-          return <CategoryItem key={category.id} category={category} />;
+          return <CategoryItem key={category._id} category={category} />;
         })}
       </div>
     </section>
