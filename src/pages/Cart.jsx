@@ -52,7 +52,7 @@ export default function Cart() {
             <p className="text-right">{itemsAmount} item(s)</p>
           </div>
           {cart.map((item) => (
-            <CartItem item={item} key={item.id} />
+            <CartItem item={item} key={item._id} />
           ))}
           <hr />
           <div className="max-w-80 mx-auto flex flex-col py-10 md:mx-0 md:ml-auto">
