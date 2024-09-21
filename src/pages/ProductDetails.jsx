@@ -59,9 +59,7 @@ export default function ProductsDetails() {
       <div className="flex justify-between max-lg:flex-col">
         <img className="w-1/2 max-lg:w-full" src={data[0].image} alt="" />
         <div className="w-1/2 p-10 max-lg:w-full max-lg:px-0">
-          <h2 className="text-3xl font-medium text-gray-700">
-            {data[0].title}
-          </h2>
+          <h2 className="text-3xl font-medium text-gray-700">{data[0].name}</h2>
           <p className="py-3">₱ {data[0].regularPrice.toLocaleString()}</p>
           <hr />
           <p className="py-5 tracking-wide">{data[0].description}</p>
