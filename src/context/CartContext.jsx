@@ -28,9 +28,7 @@ export default function CartProvider({ children }) {
   useEffect(() => {
     const total = cart.reduce((a, c) => {
       const priceToUse =
-        c.attributes.isOnSale && c.attributes.salePrice !== 0
-          ? c.attributes.salePrice
-          : c.attributes.regPrice;
+        c.isOnSale && c.salePrice !== 0 ? c.salePrice : c.regularPrice;
       return a + priceToUse * c.amount;
     }, 0);
     setTotal(total);
@@ -38,13 +36,13 @@ export default function CartProvider({ children }) {
 
   // add to cart
   const addToCart = (item) => {
-    const itemID = item.id;
-    const existingItem = cart.find((cartItem) => cartItem.id === itemID);
+    const itemID = item._id;
+    const existingItem = cart.find((cartItem) => cartItem._id === itemID);
 
     if (existingItem) {
       // If item already exists in cart, update its amount
       const updatedCart = cart.map((cartItem) =>
-        cartItem.id === itemID
+        cartItem._id === itemID
           ? { ...cartItem, amount: cartItem.amount + 1 }
           : cartItem
       );
@@ -59,7 +57,7 @@ export default function CartProvider({ children }) {
   // remove cart
   const removeFromCart = (id) => {
     const newCart = cart.filter((item) => {
-      return item.id !== id;
+      return item._id !== id;
     });
     setCart(newCart);
   };
@@ -87,7 +85,7 @@ export default function CartProvider({ children }) {
   const addQty = (id) => {
     const updatedCart = cart
       .map((item) => {
-        if (item.id === id) {
+        if (item._id === id) {
           const newAmount = item.amount + 1;
           if (newAmount < 1) {
             return null;
@@ -104,7 +102,7 @@ export default function CartProvider({ children }) {
   const reduceQty = (id) => {
     const updatedCart = cart
       .map((item) => {
-        if (item.id === id) {
+        if (item._id === id) {
           const newAmount = item.amount - 1;
           if (newAmount < 1) {
             return null; // This item will be filtered out
