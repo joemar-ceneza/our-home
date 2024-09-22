@@ -12,9 +12,7 @@ import NotFound from "../components/NotFound";
 export default function ProductsDetails() {
   const { addToCart } = useContext(CartContext);
   const { id } = useParams();
-  const { data, isLoading, error } = useFetch(
-    `/products?populate=*&filters[slug][$eq]=${id}`
-  );
+  const { data, isLoading, error } = useFetch(`/products/products?slug=${id}`);
 
   if (isLoading) {
     return (
