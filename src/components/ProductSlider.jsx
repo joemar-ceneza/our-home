@@ -42,7 +42,7 @@ export default function ProductSlider({
       pagination={{ clickable: true, dynamicBullets: true }}
       className="max-w-[230px] md:max-w-[500px] lg:max-w-[770px] xl:max-w-[1040px] select-none">
       <>
-        {data?.map((product) => {
+        {data.relatedProducts?.map((product) => {
           return (
             <SwiperSlide key={product._id}>
               <Product
