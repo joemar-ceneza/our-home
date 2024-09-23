@@ -4,7 +4,7 @@ export default function RelatedProducts({ categoryTitle }) {
   return (
     <ProductSection
       title="related products"
-      fetchUrl={`/products?populate=*&filters[categories][title]=${categoryTitle}`}
+      fetchUrl={`/products/products/${categoryTitle}`}
       bestLabel={false}
       newLabel={false}
       relatedLabel={true}
