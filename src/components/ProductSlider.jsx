@@ -12,8 +12,12 @@ export default function ProductSlider({
   newLabel,
   relatedLabel,
 }) {
-  console.log("Product Slider log: ", data);
-
+  // handle the rendering based on the props passed
+  const productsToDisplay = bestLabel
+    ? data
+    : newLabel
+    ? data
+    : data.relatedProducts;
   return (
     <Swiper
       modules={[Pagination, Navigation]}
@@ -44,7 +48,7 @@ export default function ProductSlider({
       pagination={{ clickable: true, dynamicBullets: true }}
       className="max-w-[230px] md:max-w-[500px] lg:max-w-[770px] xl:max-w-[1040px] select-none">
       <>
-        {data.relatedProducts?.map((product) => {
+        {productsToDisplay?.map((product) => {
           return (
             <SwiperSlide key={product._id}>
               <Product
