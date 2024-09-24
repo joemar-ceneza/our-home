@@ -40,6 +40,7 @@ export default function ProductsDetails() {
 
   const product = data[0];
   const categoryTitle = data[0].slug;
+  console.log("Product Details log: ", data);
 
   return (
     <section className="max-w-screen-2xl w-[90%] mx-auto py-10">
