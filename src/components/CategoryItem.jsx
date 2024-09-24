@@ -6,7 +6,6 @@ export default function CategoryItem({ category }) {
       <Link to={`/products/${category.slug}`}>
         <img
           className="w-full brightness-50"
-          key={category.id}
           src={`${category.image}`}
           alt={category.name}
           draggable="false"
