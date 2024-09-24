@@ -48,11 +48,13 @@ export default function ProductsDetails() {
           <IoHomeOutline />
         </Link>
         <IoChevronForward className="mx-2" />
-        <Link to={`/products/${data[0].slug}`}>
-          <p className="text-sm tracking-wide capitalize">{data[0].name}</p>
+        <Link to={`/products/${data[0].category.slug}`}>
+          <p className="text-sm tracking-wide capitalize">
+            {data[0].category.name}
+          </p>
         </Link>
         <IoChevronForward className="mx-2" />
-        <p className="text-sm tracking-wide capitalize">{data[0].title}</p>
+        <p className="text-sm tracking-wide capitalize">{data[0].name}</p>
       </div>
       <div className="flex justify-between max-lg:flex-col">
         <img className="w-1/2 max-lg:w-full" src={data[0].image} alt="" />
