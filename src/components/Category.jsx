@@ -5,7 +5,7 @@ import DesktopChooseCategory from "../images/desktop-choose-category.jpg";
 import CategoryItem from "./CategoryItem";
 
 export default function Category() {
-  const { data } = useFetch("/categories?populate=*");
+  const { data } = useFetch("/categories");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // Initial check for mobile screen size
 
   useEffect(() => {
