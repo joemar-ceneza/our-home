@@ -12,6 +12,8 @@ export default function ProductSlider({
   newLabel,
   relatedLabel,
 }) {
+  console.log("Product Slider log: ", data);
+
   return (
     <Swiper
       modules={[Pagination, Navigation]}

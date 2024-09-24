@@ -47,7 +47,7 @@ export default function ProductSection({
       />
     );
   };
-
+  console.log("Product Section log: ", data);
   return (
     <section className="max-w-screen-xl w-4/5 mx-auto py-16">
       <div className="inline-flex items-center justify-center w-full capitalize text-sm py-3">

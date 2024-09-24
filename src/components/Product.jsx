@@ -23,6 +23,7 @@ export default function Product({
     e.preventDefault();
     handleView(e, product);
   };
+  console.log("Product log", product);
 
   return (
     <Link to={`/product/${product.slug}`} draggable="false">
