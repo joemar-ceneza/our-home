@@ -17,7 +17,7 @@ export default function FeaturedProducts() {
   );
 
   useEffect(() => {
-    if (data) {
+    if (data && data.products) {
       const newProducts = data.products.filter(
         (newProduct) =>
           !products.some((product) => product.id === newProduct.id)
@@ -79,7 +79,7 @@ export default function FeaturedProducts() {
       </h2>
       {renderContent()}
       <div className="mt-10 flex justify-center gap-4">
-        {data && data.length === defaultPageSize && (
+        {data && data.products && data.products.length === defaultPageSize && (
           <button
             onClick={loadMore}
             className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg">
