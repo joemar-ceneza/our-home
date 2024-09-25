@@ -20,7 +20,7 @@ export default function FeaturedProducts() {
     if (data && data.products) {
       const newProducts = data.products.filter(
         (newProduct) =>
-          !products.some((product) => product.id === newProduct.id)
+          !products.some((product) => product._id === newProduct._id)
       );
 
       setProducts((prevProducts) => {
