@@ -13,12 +13,12 @@ export default function FeaturedProducts() {
   const [isFetchingMore, setIsFetchingMore] = useState(false);
 
   const { data, isLoading, error } = useFetch(
-    `/products?populate=*&filters[isFeatured]=true&pagination[page]=${page}&pagination[pageSize]=${defaultPageSize}`
+    `/products/featured?page=${page}&pageSize=${defaultPageSize}`
   );
 
   useEffect(() => {
     if (data) {
-      const newProducts = data.filter(
+      const newProducts = data.products.filter(
         (newProduct) =>
           !products.some((product) => product.id === newProduct.id)
       );
@@ -62,7 +62,7 @@ export default function FeaturedProducts() {
       <>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-8 lg:grid-cols-4 xl:grid-cols-5 relative">
           {products.map((product) => (
-            <FeaturedProductItem key={product.id} product={product} />
+            <FeaturedProductItem key={product._id} product={product} />
           ))}
         </div>
         {isFetchingMore && (
