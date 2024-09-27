@@ -16,17 +16,6 @@ export default function FeaturedProducts() {
   );
 
   useEffect(() => {
-    // if (data && data.products) {
-    //   const newProducts = data.products.filter(
-    //     (newProduct) =>
-    //       !products.some((product) => product._id === newProduct._id)
-    //   );
-    //   setProducts((prevProducts) => {
-    //     const updatedProducts = [...prevProducts, ...newProducts];
-    //     if (page === 1) setDefaultProducts(updatedProducts);
-    //     return updatedProducts;
-    //   });
-    // }
     if (data && data.products) {
       if (page === 1) {
         setProducts(data.products);
