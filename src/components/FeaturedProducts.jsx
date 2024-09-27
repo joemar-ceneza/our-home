@@ -47,8 +47,9 @@ export default function FeaturedProducts() {
   }, [isLoading]);
 
   const loadMore = () => {
-    setPage((prevPage) => prevPage + 1);
-    setIsFetchingMore(true);
+    if (data?.pagination && page < data.pagination.totalPages) {
+      setPage(page + 1);
+    }
   };
 
   const loadLess = () => {
