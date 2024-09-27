@@ -9,7 +9,6 @@ export default function FeaturedProducts() {
   const defaultPageSize = 10;
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState([]);
-  const [defaultProducts, setDefaultProducts] = useState([]);
   const [isFetchingMore, setIsFetchingMore] = useState(false);
 
   const { data, isLoading, error } = useFetch(
