@@ -107,6 +107,11 @@ export default function FeaturedProducts() {
           </button>
         )}
       </div>
+      <div className="text-center py-8">
+        <p>
+          Showing {products.length} of {data?.pagination.totalProducts}
+        </p>
+      </div>
     </section>
   );
 }
