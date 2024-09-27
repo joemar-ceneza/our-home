@@ -17,17 +17,28 @@ export default function FeaturedProducts() {
   );
 
   useEffect(() => {
+    // if (data && data.products) {
+    //   const newProducts = data.products.filter(
+    //     (newProduct) =>
+    //       !products.some((product) => product._id === newProduct._id)
+    //   );
+    //   setProducts((prevProducts) => {
+    //     const updatedProducts = [...prevProducts, ...newProducts];
+    //     if (page === 1) setDefaultProducts(updatedProducts);
+    //     return updatedProducts;
+    //   });
+    // }
     if (data && data.products) {
-      const newProducts = data.products.filter(
-        (newProduct) =>
-          !products.some((product) => product._id === newProduct._id)
-      );
-
-      setProducts((prevProducts) => {
-        const updatedProducts = [...prevProducts, ...newProducts];
-        if (page === 1) setDefaultProducts(updatedProducts);
-        return updatedProducts;
-      });
+      if (page === 1) {
+        setProducts(data.products);
+      } else {
+        setProducts((prevProducts) => {
+          const newProducts = data.products.filter(
+            (newProduct) => !prevProducts.some((p) => p._id === newProduct._id)
+          );
+          return [...prevProducts, ...newProducts];
+        });
+      }
     }
   }, [data, page]);
 
