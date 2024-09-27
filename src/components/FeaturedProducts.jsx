@@ -52,8 +52,10 @@ export default function FeaturedProducts() {
   };
 
   const loadLess = () => {
-    setProducts(defaultProducts);
     setPage(1);
+    if (data?.products) {
+      setProducts(data?.products);
+    }
   };
 
   const renderContent = () => {
