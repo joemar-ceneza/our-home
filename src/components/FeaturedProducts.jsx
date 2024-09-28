@@ -98,7 +98,9 @@ export default function FeaturedProducts() {
       </div>
       <div className="text-center py-8">
         <p>
-          Showing {products.length} of {data?.pagination.totalProducts}
+          {products.length > 0
+            ? `Showing ${products.length} of ${data?.pagination.totalProducts}`
+            : null}
         </p>
       </div>
     </section>
