@@ -19,13 +19,24 @@ import MobileMidYearSale from "../images/mobile-mid-year-sale.jpeg";
 import MobileInstallment from "../images/mobile-installment.jpeg";
 
 export default function Hero() {
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768); // Initial check for screen size
-  const { data: desktopData } = useFetch(
-    `/heroes?populate=*&filters[isDesktop]=true`
-  );
-  const { data: mobileData } = useFetch(
-    `/heroes?populate=*&filters[isDesktop]=false`
-  );
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+
+  const heroImages = isDesktop
+    ? [
+        { url: DesktopSale },
+        { url: DesktopInteriorDesign },
+        { url: DesktopInstallment },
+        { url: DesktopShoppingReward },
+        { url: DesktopLess },
+      ]
+    : [
+        { url: MobileExtra },
+        { url: MobileGiftsDad },
+        { url: MobileInteriorDesign },
+        { url: MobileLess },
+        { url: MobileMidYearSale },
+        { url: MobileInstallment },
+      ];
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,21 +46,17 @@ export default function Hero() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const data = isDesktop ? desktopData : mobileData;
+  // const data = isDesktop ? desktopData : mobileData;
 
   return (
     <Swiper
       modules={[Pagination, Navigation, Autoplay]}
       loop={true}
       autoplay={{ delay: 5000, disableOnInteraction: false }}>
-      {data?.map((item, index) => {
+      {heroImages?.map((item, index) => {
         return (
           <SwiperSlide key={index}>
-            <img
-              className="w-screen select-none"
-              src={`${item.attributes.image.data[0].attributes.url}`}
-              alt=""
-            />
+            <img className="w-screen select-none" src={`${item.url}`} alt="" />
           </SwiperSlide>
         );
       })}
