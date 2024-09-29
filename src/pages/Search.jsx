@@ -13,9 +13,7 @@ export default function Search() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const searchTerm = searchParams.get("query");
-  const { data } = useFetch(
-    `/products?populate=*&filters[title][$contains]=${searchTerm}`
-  );
+  const { data } = useFetch(`/products/search?name=${searchTerm}`);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -31,7 +29,7 @@ export default function Search() {
         {data?.map((product) => {
           return (
             <Product
-              key={product.id}
+              key={product._id}
               product={product}
               handleButtonClick={handleButtonClick}
               handleView={(e, product) =>
