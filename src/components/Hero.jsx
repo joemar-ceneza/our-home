@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import useFetch from "../hook/useFetch";
+import "swiper/css/navigation";
 // images large screen sizes
 import DesktopSale from "../images/desktop-sale.jpg";
 import DesktopInteriorDesign from "../images/desktop-interior-design.jpg";
@@ -46,12 +46,12 @@ export default function Hero() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // const data = isDesktop ? desktopData : mobileData;
-
   return (
     <Swiper
       modules={[Pagination, Navigation, Autoplay]}
       loop={true}
+      pagination={true}
+      navigation={true}
       autoplay={{ delay: 5000, disableOnInteraction: false }}>
       {heroImages?.map((item, index) => {
         return (
