@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import Product from "../components/Product";
 
 export default function ProductSlider({
@@ -20,9 +20,8 @@ export default function ProductSlider({
     : data.relatedProducts;
   return (
     <Swiper
-      modules={[Pagination, Navigation]}
+      modules={[Pagination]}
       loop={false}
-      navigation={true}
       breakpoints={{
         320: {
           slidesPerView: 1,
