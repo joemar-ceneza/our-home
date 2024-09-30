@@ -1,18 +1,14 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
-import CartItem from "../components/CartItem";
 import { IoChevronBack } from "react-icons/io5";
-// stripe
 import { loadStripe } from "@stripe/stripe-js";
 import { request } from "../request";
+import CartItem from "../components/CartItem";
 
 export default function Cart() {
   const { cart, total, clearCart, itemsAmount } = useContext(CartContext);
-
-  const stripePromise = loadStripe(
-    "pk_test_51NULHNLL9SaFonV4HXbhhyIobbTZWElP8aSBOAoh1Mf0BnNWvF4lbLsPPtUhkrSKZvmOTp9ONkUpot3aMxnfuRge00Q9V0YSB3"
-  );
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
   const handlePayment = async () => {
     try {
@@ -20,13 +16,11 @@ export default function Cart() {
       const res = await request.post("/orders", {
         cart,
       });
-      if (res.status !== 200) {
+      if (!res.data || !res.data.stripeSession || res.status !== 200) {
         throw new Error("Failed to create Stripe session");
       }
       const sessionId = res.data.stripeSession.id;
-      await stripe.redirectToCheckout({
-        sessionId: res.data.stripeSession.id,
-      });
+      await stripe.redirectToCheckout({ sessionId });
     } catch (error) {
       console.error("Payment error:", error);
       alert("Payment processing failed. Please try again.");
