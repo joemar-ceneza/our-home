@@ -27,7 +27,7 @@ export default function Header() {
           </Link>
         </div>
       </div>
-      <div className="bg-gray-200 z-50">
+      <div className="bg-gray-200 z-50 select-none">
         <div className="w-[240px] mx-auto py-5">
           <Link to={"/"}>
             <img src={Logo} alt="" />
