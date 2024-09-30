@@ -8,10 +8,13 @@ import {
   handleView,
   closeModal,
 } from "../utils/commonUtils";
+import SpinnerLoader from "../components/SpinnerLoader";
+import Error from "../components/Error";
+import NotFound from "../components/NotFound";
 
 export default function Products() {
   const { id } = useParams();
-  const { data } = useFetch(`/categories/categories/${id}`);
+  const { data, isLoading, error } = useFetch(`/categories/categories/${id}`);
   const [title, setTitle] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -21,6 +24,28 @@ export default function Products() {
       setTitle(data?.category.name);
     }
   }, [data]);
+
+  if (isLoading) {
+    <div className="py-80">
+      <SpinnerLoader />
+    </div>;
+  }
+
+  if (error) {
+    return (
+      <div className="py-80">
+        <Error />
+      </div>
+    );
+  }
+
+  if (!data || data.products.length === 0) {
+    return (
+      <div className="py-80">
+        <NotFound />
+      </div>
+    );
+  }
 
   return (
     <section className="max-w-screen-xl w-[90%] mx-auto py-10">
