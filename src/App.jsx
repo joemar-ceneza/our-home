@@ -10,6 +10,7 @@ import Category from "./components/Category";
 // components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 // layout
 const Layout = () => {
   return (
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       { path: "/category", element: <Category /> },
       { path: "/login", element: <Login /> },
       { path: "/cart", element: <Cart /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);
