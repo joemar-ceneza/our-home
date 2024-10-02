@@ -11,9 +11,7 @@ export default function CartItem({ item }) {
     <>
       <hr />
       <div className="flex flex-col justify-around items-center py-5 tracking-wide overflow-hidden relative md:flex-row">
-        <Link
-          to={`http://localhost:3000/product/${item.slug}`}
-          className="w-[200px] h-[200px]">
+        <Link to={`/product/${item.slug}`} className="w-[200px] h-[200px]">
           <img src={`${item.image}`} alt="" />
         </Link>
         <h2 className="text-xs text-left font-semibold md:text-base md:px-3">
