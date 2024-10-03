@@ -11,6 +11,7 @@ import Category from "./components/Category";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
+import Success from "./components/Success";
 // layout
 const Layout = () => {
   return (
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       { path: "/category", element: <Category /> },
       { path: "/login", element: <Login /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/success", element: <Success /> },
       { path: "*", element: <NotFound /> },
     ],
   },
