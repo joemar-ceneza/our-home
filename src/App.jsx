@@ -12,6 +12,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import Success from "./components/Success";
+import Cancel from "./components/Cancel";
+
 // layout
 const Layout = () => {
   return (
@@ -35,6 +37,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/cart", element: <Cart /> },
       { path: "/success", element: <Success /> },
+      { path: "/cancel", element: <Cancel /> },
       { path: "*", element: <NotFound /> },
     ],
   },
