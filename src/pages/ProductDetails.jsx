@@ -38,9 +38,6 @@ export default function ProductsDetails() {
     );
   }
 
-  const product = data[0];
-  const categoryTitle = data[0].slug;
-
   return (
     <section className="max-w-screen-2xl w-[90%] mx-auto py-10">
       <div className="flex items-center py-5">
@@ -64,13 +61,13 @@ export default function ProductsDetails() {
           <hr />
           <p className="py-5 tracking-wide">{data[0].description}</p>
           <button
-            onClick={() => addToCart(product)}
+            onClick={() => addToCart(data[0])}
             className="bg-gray-800 my-7 p-3 px-16 text-white capitalize max-lg:w-full">
             add <span className="normal-case">to</span> cart
           </button>
         </div>
       </div>
-      <RelatedProducts categoryTitle={categoryTitle} />
+      <RelatedProducts categoryTitle={data[0].slug} />
     </section>
   );
 }
