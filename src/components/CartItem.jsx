@@ -19,9 +19,9 @@ export default function CartItem({ item }) {
         </h2>
         <div className="flex justify-between py-5">
           {item.isOnSale === true && item.salePrice !== 0 ? (
-            <p className="text-left">₱ {item.salePrice}</p>
+            <p className="text-left">₱ {item.salePrice.toLocaleString()}</p>
           ) : (
-            <p className="text-left">₱ {item.regularPrice}</p>
+            <p className="text-left">₱ {item.regularPrice.toLocaleString()}</p>
           )}
           <div className="w-[40%] flex justify-center items-center">
             <button
@@ -42,9 +42,13 @@ export default function CartItem({ item }) {
             </button>
           </div>
           {item.isOnSale === true && item.salePrice !== 0 ? (
-            <p className="text-center">₱ {item.salePrice * item.amount}</p>
+            <p className="text-center">
+              ₱ {(item.salePrice * item.amount).toLocaleString()}
+            </p>
           ) : (
-            <p className="text-center">₱ {item.regularPrice * item.amount}</p>
+            <p className="text-center">
+              ₱ {(item.regularPrice * item.amount).toLocaleString()}
+            </p>
           )}
         </div>
         <button

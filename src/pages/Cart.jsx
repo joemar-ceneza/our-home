@@ -30,7 +30,7 @@ export default function Cart() {
   return (
     <section className="max-w-screen-2xl w-[95%] mx-auto text-center py-10">
       {cart.length === 0 ? (
-        <div className="text-4xl normal-case tracking-wider py-20">
+        <div className="text-4xl normal-case tracking-wider py-60">
           Your cart is currently empty.
         </div>
       ) : (
