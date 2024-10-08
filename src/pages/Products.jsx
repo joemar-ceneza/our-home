@@ -26,9 +26,11 @@ export default function Products() {
   }, [data]);
 
   if (isLoading) {
-    <div className="py-80">
-      <SpinnerLoader />
-    </div>;
+    return (
+      <div className="py-80">
+        <SpinnerLoader />
+      </div>
+    );
   }
 
   if (error) {
