@@ -34,24 +34,15 @@ export default function Modal({ product, closeModal }) {
                   sale
                 </div>
                 <p className="py-3 text-lg font-bold text-red-500">
-                  ₱{" "}
-                  {product.salePrice
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  ₱ {product.salePrice.toLocaleString()}
                 </p>
                 <p className="py-3 px-5 text-sm font-bold text-gray-300 line-through">
-                  ₱{" "}
-                  {product.regularPrice
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  ₱ {product.regularPrice.toLocaleString()}
                 </p>
               </>
             ) : (
               <p className="py-3 text-lg font-bold text-red-500">
-                ₱{" "}
-                {product.regularPrice
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                ₱ {product.regularPrice.toLocaleString()}
               </p>
             )}
           </div>

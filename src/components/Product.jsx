@@ -68,24 +68,15 @@ export default function Product({
           {product.isOnSale && product.salePrice !== 0 ? (
             <>
               <div className="absolute bottom-8">
-                ₱{" "}
-                {product.salePrice
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                ₱ {product.salePrice.toLocaleString()}
               </div>
               <div className="absolute bottom-8 left-28 text-gray-400 line-through">
-                ₱{" "}
-                {product.regularPrice
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                ₱ {product.regularPrice.toLocaleString()}
               </div>
             </>
           ) : (
             <div className="absolute bottom-8">
-              ₱{" "}
-              {product.regularPrice
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              ₱ {product.regularPrice.toLocaleString()}
             </div>
           )}
         </div>
