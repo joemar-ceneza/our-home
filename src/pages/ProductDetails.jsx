@@ -57,7 +57,19 @@ export default function ProductsDetails() {
         <img className="w-1/2 max-lg:w-full" src={data[0].image} alt="" />
         <div className="w-1/2 p-10 max-lg:w-full max-lg:px-0">
           <h2 className="text-3xl font-medium text-gray-700">{data[0].name}</h2>
-          <p className="py-3">₱ {data[0].regularPrice.toLocaleString()}</p>
+          <div className="flex">
+            {data[0].isOnSale && data[0].salePrice > 0 ? (
+              <>
+                <p className="py-3">₱ {data[0].salePrice.toLocaleString()}</p>
+                <p className="text-gray-300 text-sm line-through py-3 px-5">
+                  ₱ {data[0].regularPrice.toLocaleString()}
+                </p>
+              </>
+            ) : (
+              <p className="py-3">₱ {data[0].regularPrice.toLocaleString()}</p>
+            )}
+          </div>
+
           <hr />
           <p className="py-5 tracking-wide">{data[0].description}</p>
           <button
