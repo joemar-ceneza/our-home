@@ -3,7 +3,22 @@
 @tailwind utilities;
 @tailwind variants;
 
+/* Swiper navigation arrows + active pagination bullet use the clay accent */
+.swiper {
+  --swiper-theme-color: #b5613e;
+}
+
 @layer base {
+  body {
+    @apply bg-sand text-ink font-montserrat antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif;
+  }
+
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
